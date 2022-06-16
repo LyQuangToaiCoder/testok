@@ -40,3 +40,4 @@ ANKIVECTOR_IMG = "https://telegra.ph/file/75579c20520fc79f5b68d.jpg"
 
 
 bot.polling()
+

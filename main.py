@@ -1,18 +1,13 @@
-import os
-import telebot
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 
-bot = telebot.TeleBot("5327605752:AAGPpMAP43dbRVXYJgdAyjk7kilpN49FaYA")
-
-@bot.message_handler(commands=["start"])
-def send_welcome(message):
-    bot.reply_to(message, "Adu, Toại Dzzzz {full_name}")
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}')
 
 
-@bot.message_handler(commands=["help"])
-def send_message(message):
-    bot.send_message(message.chat.id, "https://www.youtube.com/channel/UCL8PI42TZ_uaQWVVKUJx9Eg")
+app = ApplicationBuilder().token("5327605752:AAGPpMAP43dbRVXYJgdAyjk7kilpN49FaYA").build()
 
+app.add_handler(CommandHandler("hello", hello))
 
-
-bot.polling()
+app.run_polling()
